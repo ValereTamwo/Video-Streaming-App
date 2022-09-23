@@ -3,7 +3,9 @@ const fs = require('fs');
 const path = require('path');
 const app = express();
 const port = 3004;
+const cors = require('cors');
 
+app.use(cors());
 
 const Videos = [
     {
@@ -30,5 +32,5 @@ app.get('/videolist', (req, res) => {
     res.status(200).json({Videos});
 })
 
-app.get('/:videoId', (req, res) => res.sendFile(`assets/${req.params.videoId}.mp4`,{root:__dirname}));
+app.get('/videos/:videoId', (req, res) => res.sendFile(`assets/${req.params.videoId}.mp4`,{root:__dirname}));
 app.listen(port, () => console.log(`Example app listening on port ${port}!`)); 
